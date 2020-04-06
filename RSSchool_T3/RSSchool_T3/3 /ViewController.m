@@ -28,6 +28,9 @@
     [self setupResultViewColorView];
     [self setupLabels];
     [self setupTextFields];
+    self.textFieldRed.delegate = self;
+    self.textFieldGreen.delegate = self;
+    self.textFieldBlue.delegate = self;
     [self setupButton];
     [self setupAccessibility];
 }
@@ -95,9 +98,14 @@
     // Button customisation
     self.buttonProcess = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 35, 380, 70, 30)];
     [self.buttonProcess setTitle:@"Process" forState:UIControlStateNormal];
-    [self.buttonProcess setTitleColor:UIColor.systemBlueColor forState:UIControlStateNormal];
+    [self.buttonProcess setTitleColor:UIColor.blueColor forState:UIControlStateNormal];
     [self.buttonProcess addTarget:self action:@selector(greatMixer) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.buttonProcess];
+}
+
+// TextFieldEditing
+-(void)textFieldDidEndEditing:(UITextField *)textField {
+    self.labelResultColor.text = @"Color";
 }
 
 // Great Mixer
