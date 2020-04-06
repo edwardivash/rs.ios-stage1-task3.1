@@ -28,6 +28,9 @@
     [self setupResultViewColorView];
     [self setupLabels];
     [self setupTextFields];
+    self.textFieldRed.delegate = self;
+    self.textFieldGreen.delegate = self;
+    self.textFieldBlue.delegate = self;
     [self setupButton];
     [self setupAccessibility];
 }
@@ -101,7 +104,7 @@
 }
 
 // TextFieldEditing
--(void)textFieldDidEndEditing:(UITextField *)textField {
+-(void)textFieldDidBeginEditing:(UITextField *)textField {
     self.labelResultColor.text = @"Color";
 }
 
