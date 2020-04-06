@@ -28,9 +28,6 @@
     [self setupResultViewColorView];
     [self setupLabels];
     [self setupTextFields];
-    self.textFieldRed.delegate = self;
-    self.textFieldGreen.delegate = self;
-    self.textFieldBlue.delegate = self;
     [self setupButton];
     [self setupAccessibility];
 }
@@ -110,6 +107,12 @@
 
 // Great Mixer
 -(void)greatMixer {
+    [self.view endEditing:YES];
+    // Hide keyboard
+    [self.textFieldRed resignFirstResponder];
+    [self.textFieldGreen resignFirstResponder];
+    [self.textFieldBlue resignFirstResponder];
+    
     int red = self.textFieldRed.text.intValue;
     int green = self.textFieldGreen.text.intValue;
     int blue = self.textFieldBlue.text.intValue;
@@ -127,16 +130,11 @@
         UIColor *color = [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1];
         self.viewResultColor.backgroundColor = color;
         self.labelResultColor.text = [self hexFromColor:color];
-        
-        // Clear textFields
-        self.textFieldRed.text = @"";
-        self.textFieldGreen.text = @"";
-        self.textFieldBlue.text = @"";
-        // Hide keyboard
-        [self.textFieldRed resignFirstResponder];
-        [self.textFieldGreen resignFirstResponder];
-        [self.textFieldBlue resignFirstResponder];
     }
+    // Clear textFields
+    self.textFieldRed.text = @"";
+    self.textFieldGreen.text = @"";
+    self.textFieldBlue.text = @"";
 }
 
 // GetHex
